@@ -1,5 +1,6 @@
 <div class="main-div">
-<mat-card class="login-card">
+  <mat-spinner *ngIf="showLoading" ></mat-spinner>
+<mat-card *ngIf="!showLoading" class="login-card">
     <mat-card-header style="justify-content: center;" >
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
@@ -24,6 +25,9 @@
                 </mat-error>
               </mat-form-field>
           </form>
+          <p *ngIf="errorMessage" style="color:red">
+            {{ errorMessage }}
+          </p>
     </mat-card-content>
     <mat-card-actions style="text-align: center;">
       <button mat-raised-button color="primary" (click)="signIn()" >Sign In</button>

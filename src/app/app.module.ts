@@ -14,6 +14,14 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { RegisterComponent } from './register/register.component';
+import { AngularFireModule } from '@angular/fire';
+//import { AngularFireAuthModule } from '@angular/fire/auth/public_api';
+//import { AngularFirestoreModule } from '@angular/fire/firestore/public_api';
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AuthGuard } from './core/auth.guard';
+import { AuthService } from './core/auth.service';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -28,14 +36,20 @@ import { RegisterComponent } from './register/register.component';
     ReactiveFormsModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireModule,
+    AngularFirestoreModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+    AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
