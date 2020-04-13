@@ -71,7 +71,7 @@ export class AuthService {
 
   doLogout(){
     return new Promise((resolve, reject) => {
-      if(firebase.auth().currentUser){
+      if(this.afAuth.currentUser){
         this.afAuth.signOut();
         resolve();
       }

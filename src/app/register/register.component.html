@@ -19,7 +19,7 @@
 
                 <mat-form-field class="signup-full-width">
                     <mat-label>Password</mat-label>
-                    <input matInput  [formControl]="passFormControl" placeholder="Password" >
+                    <input matInput type="password" [formControl]="passFormControl" placeholder="Password" >
                     <mat-error *ngIf="passFormControl.hasError('required')">
                       Password is <strong>required</strong>
                     </mat-error>
@@ -27,7 +27,7 @@
 
                 <mat-form-field class="signup-full-width">
                     <mat-label>Repeat Password</mat-label>
-                    <input matInput  [formControl]="repassFormControl" placeholder="Repeat Password" >
+                    <input matInput type="password" [formControl]="repassFormControl" placeholder="Repeat Password" >
                     <mat-error *ngIf="repassFormControl.hasError('required')">
                       Re-Password is <strong>required</strong>
                     </mat-error>

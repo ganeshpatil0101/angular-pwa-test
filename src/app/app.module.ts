@@ -22,7 +22,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AuthGuard } from './core/auth.guard';
 import { AuthService } from './core/auth.service';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,10 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

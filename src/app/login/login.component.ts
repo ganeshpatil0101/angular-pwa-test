@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../core/auth.service';
 import { Router } from '@angular/router';
@@ -19,11 +19,18 @@ export class LoginComponent implements OnInit {
   passFormControl = new FormControl('', [
     Validators.required
   ])
-  constructor(public authService: AuthService, private router: Router, private afAuth: AngularFireAuth ) {
+  hide = true;  
+  constructor(public authService: AuthService, 
+    private router: Router, 
+    private afAuth: AngularFireAuth, 
+    private ngzone : NgZone ) {
     this.afAuth.onAuthStateChanged(user => {
       if (user) {
         console.log('User is already logged in ');
-        this.router.navigate(['/dash']);
+        this.ngzone.run(()=>{
+          this.router.navigate(['/dash']);
+        });
+        localStorage.setItem('isLoggedin', 'true');
       } else {
         console.log('User Not Logged in');
       }
@@ -44,7 +51,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('isLoggedin', 'true');
       this.router.navigate(['/dash']);
     }).catch(err => {
-      console.log(err);
+      console.error(err);
       this.errorMessage = err.message;
     }).finally(()=>this.showLoading = false);
   }

@@ -1,1 +1,21 @@
-<p>dashboard works!</p>
+<mat-toolbar color="primary">
+<mat-toolbar-row>
+    <span>Dashboard </span>
+    <span class="dash-spacer"></span>
+    <button mat-mini-fab color="primary" aria-label="Logout" (click)="logout()">
+        <mat-icon class="dash-icon dash-logout" aria-hidden="false" aria-label="Logout">power_settings_new</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="dash-floating-button">
+    <button mat-mini-fab color="primary" aria-label="Add New" [matMenuTriggerFor]="menu">
+        <mat-icon>add</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+    </mat-menu>
+</div>
+
+

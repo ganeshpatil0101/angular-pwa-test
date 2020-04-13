@@ -38,8 +38,9 @@ export class RegisterComponent implements OnInit {
         alert('User Registered Successfully.');
         this.showLoading = false;
         this.router.navigate(['/login']);
-      }).catch((e)=>{
+      }).catch((e:Error)=>{
         console.error(e);
+        this.errorMessage = e.message;
       }).finally(()=>this.showLoading = false);
     }
   }

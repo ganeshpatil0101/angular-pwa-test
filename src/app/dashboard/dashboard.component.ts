@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { AuthService } from '../core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth:AuthService, private ngzone:NgZone, private router:Router) { }
 
   ngOnInit(): void {
   }
-
+  
+  logout() {
+    this.auth.doLogout().then(()=>{
+      this.ngzone.run(()=>{
+        this.router.navigate(['/login']);
+      })
+    })
+  }
 }

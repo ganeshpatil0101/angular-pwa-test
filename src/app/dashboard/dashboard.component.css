@@ -1,0 +1,16 @@
+.dash-icon {
+    padding: 0 14px;
+  }
+  
+  .dash-spacer {
+    flex: 1 1 auto;
+  }
+.dash-floating-button{
+  float: left;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+.dash-logout{
+  padding: 0px!important;
+}
