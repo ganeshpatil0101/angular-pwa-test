@@ -25,15 +25,26 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import { MovieItemComponent } from './movie-item/movie-item.component';
+import { AddEditMovieComponent } from './add-edit-movie/add-edit-movie.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DeviceDetectorModule } from 'ngx-device-detector';
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MovieItemComponent,
+    AddEditMovieComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -43,6 +54,7 @@ import {MatMenuModule} from '@angular/material/menu';
     AngularFireModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
+    DeviceDetectorModule.forRoot(),
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -50,7 +62,10 @@ import {MatMenuModule} from '@angular/material/menu';
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatCheckboxModule    
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

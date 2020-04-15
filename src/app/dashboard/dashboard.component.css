@@ -14,3 +14,14 @@
 .dash-logout{
   padding: 0px!important;
 }
+.main-div{
+  /* height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; */
+  padding: 20px;
+  
+  align-items: center;
+  justify-content: center;
+  display: grid;
+}

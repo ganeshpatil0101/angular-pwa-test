@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
     private afAuth: AngularFireAuth, 
     private ngzone : NgZone ) {
     this.afAuth.onAuthStateChanged(user => {
+      let isLoggedin = localStorage.getItem('isLoggedin');
+      //isLoggedin == 'true' && 
       if (user) {
         console.log('User is already logged in ');
         this.ngzone.run(()=>{

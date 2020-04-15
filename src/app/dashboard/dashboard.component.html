@@ -7,13 +7,18 @@
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
+<div class="main-div">
+    <app-movie-item *ngFor="let item of movieList | async" [data]="item">
+
+    </app-movie-item>
+</div>
 
 <div class="dash-floating-button">
     <button mat-mini-fab color="primary" aria-label="Add New" [matMenuTriggerFor]="menu">
         <mat-icon>add</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item (click)="openDialog()" >Movie</button>
     <button mat-menu-item>Item 2</button>
     </mat-menu>
 </div>

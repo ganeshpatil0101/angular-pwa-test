@@ -1,0 +1,11 @@
+.dialog-height{
+    min-height: 50vh;
+}
+@media only screen and (max-width: 600px){
+    .dialog-height{
+        min-height: 43vh;
+    }
+}
+.search-spinner, .search-spinner svg{
+    height:20px!important;width:20px!important
+}

@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Which movie you watched?</h1>
+<div mat-dialog-content class="dialog-height">
+  <mat-form-field style="width: 100%;" >
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.name">
+    <button mat-button [disabled]="!data.name" matSuffix mat-icon-button aria-label="Search" 
+      (click)="findMovieByName(data.name)">
+      <mat-icon *ngIf="!showLoading">search</mat-icon>
+      <mat-spinner *ngIf="showLoading" class="search-spinner" diameter=20 ></mat-spinner>
+    </button>
+  </mat-form-field>
+  <mat-form-field style="width: 100%;" >
+    <mat-label>Poster URL</mat-label>
+    <input matInput [(ngModel)]="data.posterUrl">
+  </mat-form-field>
+<mat-form-field style="width: 100%;" >
+    <mat-label>Plot</mat-label>
+    <input matInput [(ngModel)]="data.plot">
+  </mat-form-field>
+    <mat-form-field style="width: 100%;" >
+    <mat-label>Type</mat-label>
+      <mat-select [(value)]="data.type">
+        <mat-option value="movie">Movie</mat-option>
+        <mat-option value="series">Web Series</mat-option>
+      </mat-select>
+  </mat-form-field>
+  <mat-checkbox  >Watched ?</mat-checkbox>
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancle</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>
