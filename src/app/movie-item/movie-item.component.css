@@ -3,3 +3,9 @@
     margin-top:15px;
     max-width: 500px;    
 }
+.edit-icon{
+    float: right;
+    padding-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}

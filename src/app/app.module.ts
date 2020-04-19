@@ -32,7 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { DeviceDetectorModule } from 'ngx-device-detector';
-
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +69,7 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+    {provide:LocationStrategy, useClass : HashLocationStrategy},
     AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })

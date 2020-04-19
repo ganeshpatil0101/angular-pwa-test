@@ -53,12 +53,12 @@
     {
       "name": "from-api",
       "version": 2,
-      "urls": ["/dashboard", "/user"],
+      "urls": ["https://firestore.googleapis.com/**"],
       "cacheConfig": {
         "strategy": "freshness",
-        "maxSize": 15,
+        "maxSize": 20,
         "maxAge": "1h",
-        "timeout": "3s"
+        "timeout": "10s"
       }
     }
   ]

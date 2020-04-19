@@ -13,5 +13,7 @@ export class MovieItemComponent implements OnInit {
   ngOnInit(): void {
     console.log('======> data',this.data);
   }
-
+  edit(data) {
+    console.log(data);
+  }
 }

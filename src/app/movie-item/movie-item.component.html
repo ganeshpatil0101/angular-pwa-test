@@ -18,6 +18,10 @@
     </mat-card-content>
     <mat-card-actions>
       <span >IMDB Rating  : {{data.imdbRating}}  </span>
-      <span style="float: right;"> Release Date : {{data.releaseDate}} </span>  
+     
+      <!-- <button mat-mini-fab color="primary" aria-label="Edit" (click)="edit(data)" > -->
+        <mat-icon class="edit-icon" (click)="edit(data)">edit</mat-icon>
+    <!-- </button> -->
+    <span style="float: right;"> Release Date : {{data.releaseDate}} </span>  
     </mat-card-actions>
   </mat-card>

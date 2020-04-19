@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-watched-videos';
+  
+  constructor(updates: SwUpdate) {
+    updates.available.subscribe((event)=>{
+      updates.activateUpdate().then(()=> document.location.reload());
+    })
+  }
 }
