@@ -17,3 +17,6 @@ TODO iteams
 ##  Fetch posters from google or imdb open apis for web series
 
 
+ng build --prod --service-worker --output-path docs --base-href /angular-pwa-test/
+
+ngh --message="github deployment"
