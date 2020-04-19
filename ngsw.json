@@ -1,0 +1,115 @@
+{
+  "configVersion": 1,
+  "timestamp": 1587298273528,
+  "appData": {
+    "version": "0.0.1",
+    "changelog": "Added better resource caching"
+  },
+  "index": "'https://ganeshpatil0101.github.io'/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "'https://ganeshpatil0101.github.io'/5-es2015.2d56052dbb94b9cfd6ec.js",
+        "'https://ganeshpatil0101.github.io'/5-es5.2d56052dbb94b9cfd6ec.js",
+        "'https://ganeshpatil0101.github.io'/favicon.ico",
+        "'https://ganeshpatil0101.github.io'/index.html",
+        "'https://ganeshpatil0101.github.io'/main-es2015.75454e74cea242e89396.js",
+        "'https://ganeshpatil0101.github.io'/main-es5.75454e74cea242e89396.js",
+        "'https://ganeshpatil0101.github.io'/manifest.webmanifest",
+        "'https://ganeshpatil0101.github.io'/polyfills-es2015.bbb42ff2e1c488ff52d5.js",
+        "'https://ganeshpatil0101.github.io'/polyfills-es5.0e4e1968447fab48e788.js",
+        "'https://ganeshpatil0101.github.io'/runtime-es2015.fb8334ec992d06f9428c.js",
+        "'https://ganeshpatil0101.github.io'/runtime-es5.fb8334ec992d06f9428c.js",
+        "'https://ganeshpatil0101.github.io'/styles.4d0171d501f65f5ae95f.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "'https://ganeshpatil0101.github.io'/assets/_redirects",
+        "'https://ganeshpatil0101.github.io'/assets/icons/icon-128x128.png",
+        "'https://ganeshpatil0101.github.io'/assets/icons/icon-144x144.png",
+        "'https://ganeshpatil0101.github.io'/assets/icons/icon-152x152.png",
+        "'https://ganeshpatil0101.github.io'/assets/icons/icon-192x192.png",
+        "'https://ganeshpatil0101.github.io'/assets/icons/icon-384x384.png",
+        "'https://ganeshpatil0101.github.io'/assets/icons/icon-512x512.png",
+        "'https://ganeshpatil0101.github.io'/assets/icons/icon-72x72.png",
+        "'https://ganeshpatil0101.github.io'/assets/icons/icon-96x96.png"
+      ],
+      "patterns": [
+        "https:\\/\\/fonts\\.googleapis\\.com\\/.*"
+      ]
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "from-static",
+      "patterns": [
+        "\\/data\\/data\\.json"
+      ],
+      "strategy": "performance",
+      "maxSize": 10,
+      "maxAge": 86400000,
+      "timeoutMs": 5000,
+      "version": 1
+    },
+    {
+      "name": "from-api",
+      "patterns": [
+        "https:\\/\\/firestore\\.googleapis\\.com\\/.*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 20,
+      "maxAge": 3600000,
+      "timeoutMs": 10000,
+      "version": 2
+    }
+  ],
+  "hashTable": {
+    "'https://ganeshpatil0101.github.io'/5-es2015.2d56052dbb94b9cfd6ec.js": "0492d00306e91d7f3d9d628b89bb5e39699b1085",
+    "'https://ganeshpatil0101.github.io'/5-es5.2d56052dbb94b9cfd6ec.js": "60870540d9351cb690f81f2ed477a9b7f858bb5c",
+    "'https://ganeshpatil0101.github.io'/assets/_redirects": "cda076ce408950f64a4ba83b5af441b2a07d0e78",
+    "'https://ganeshpatil0101.github.io'/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "'https://ganeshpatil0101.github.io'/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "'https://ganeshpatil0101.github.io'/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "'https://ganeshpatil0101.github.io'/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "'https://ganeshpatil0101.github.io'/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "'https://ganeshpatil0101.github.io'/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "'https://ganeshpatil0101.github.io'/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "'https://ganeshpatil0101.github.io'/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "'https://ganeshpatil0101.github.io'/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "'https://ganeshpatil0101.github.io'/index.html": "499bad0ff3611d5a43606dbda24fb3670ea7d143",
+    "'https://ganeshpatil0101.github.io'/main-es2015.75454e74cea242e89396.js": "02be1c87701b040cab9fe439f0c52a3bed141fca",
+    "'https://ganeshpatil0101.github.io'/main-es5.75454e74cea242e89396.js": "45f4be2b84b27e04416880460a48b12a4dad0d22",
+    "'https://ganeshpatil0101.github.io'/manifest.webmanifest": "3835421bf8fe01631bf28b3c10173a5b070732f2",
+    "'https://ganeshpatil0101.github.io'/polyfills-es2015.bbb42ff2e1c488ff52d5.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
+    "'https://ganeshpatil0101.github.io'/polyfills-es5.0e4e1968447fab48e788.js": "e51a1de4f016cd689dbdbef51043dec9518c4111",
+    "'https://ganeshpatil0101.github.io'/runtime-es2015.fb8334ec992d06f9428c.js": "c8d2f886962eecba152a04ab6e9045f77f0fdc9c",
+    "'https://ganeshpatil0101.github.io'/runtime-es5.fb8334ec992d06f9428c.js": "cc90bf18c46341918a08a18be8525f0d06ce0e8b",
+    "'https://ganeshpatil0101.github.io'/styles.4d0171d501f65f5ae95f.css": "bea938b33c9439f4200427ea4bfb78a8716aed66"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
