@@ -3,7 +3,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Movie } from '../movie';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MovieService } from '../movie.service';
-
+import { FormControl } from '@angular/forms';
+import { Observable, of   } from 'rxjs';
+import {map, startWith, debounceTime, switchMap} from 'rxjs/operators';
 @Component({
   selector: 'app-add-edit-movie',
   templateUrl: './add-edit-movie.component.html',
@@ -11,19 +13,76 @@ import { MovieService } from '../movie.service';
 })
 export class AddEditMovieComponent implements OnInit {
   showLoading = false;
+  movieCtrl = new FormControl();
+  filteredMovies: Observable<{ results: Movie[]}>;
+  disFn:Function;
   constructor(public dialogRef: MatDialogRef<AddEditMovieComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Movie, private movie: MovieService) { }
+    @Inject(MAT_DIALOG_DATA) public data: Movie, private movie: MovieService) {
+      
+      this.filteredMovies = this.movieCtrl.valueChanges
+      .pipe(  
+        startWith(''),
+        //debounceTime(300),
+        //map(movie => movie ? this._filterMovies(movie) : this.movieData.slice()),
+        // delay emits
+        debounceTime(500),
+        // use switch map so as to cancel previous subscribed events, before creating new once
+        switchMap(value => {
+          if (value !== '') {
+            // search from movie db
+            return this.searchByMovieName(value);
+          } else {
+            // if no value is present, return null
+            return of(null);
+          }
+        })
+      );
+      this.disFn = this.displayFn.bind(this);
+      this.mapToMovie.bind(this);
+     }
+
+
+
+  displayFn(selectedMovie) {
+     if(selectedMovie) this.mapToMovie(selectedMovie);
+    if(selectedMovie && selectedMovie.original_title){
+      return selectedMovie.original_title;
+    } else if(selectedMovie && selectedMovie.title) {
+      return selectedMovie.title;
+    }
+    return ''
+  }
+  mapToMovie(dbData) {
+    this.data.name = dbData.original_title;
+    this.data.posterUrl = this._createImgUrl(dbData.poster_path);
+    this.data.plot = dbData.overview;
+    this.data.type = 'movie';
+    this.data.imdbRating = dbData.vote_average;
+    this.data.releaseDate = dbData.release_date;
+    this.data.year = dbData.release_date.split("-")[0];
+  }
+
+  _createImgUrl(poster_path) {
+    if(poster_path) {
+      return 'https://image.tmdb.org/t/p/w300'+poster_path;
+    }
+    return "";
+  }
+  searchByMovieName(name:String) {
+    return this.movie.searchMovieName(name).pipe(
+      map(results => results.results)
+    )
+  }
 
   ngOnInit(): void {
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
+  
   findMovieByName(name:string) {
-    console.log('=======> name ',name);
     this.showLoading = true;
     this.movie.getMovieDetails(name, "").then((res:any)=>{
-      console.log("=====> ",res);
       if(res.Title) {
         this.data.name = res.Title;
         this.data.posterUrl = res.Poster;
@@ -36,4 +95,11 @@ export class AddEditMovieComponent implements OnInit {
     }).catch(e=>console.error(e)).finally(()=>{this.showLoading = false;});
 
   }
+
+  // private _filterMovies(value: string): Movies[] {
+  //   const filterValue = value.toLowerCase();    
+  //   return this.movieData.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
+  // }
+
+
 }

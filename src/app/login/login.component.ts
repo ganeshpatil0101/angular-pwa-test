@@ -43,12 +43,9 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-    console.log(this.emailFormControl.value);
-    console.log(this.passFormControl.value);
     this.showLoading = true;
     this.authService.doLogin({email: this.emailFormControl.value, password: this.passFormControl.value})
     .then(res => {
-      console.log('Login is Success1');
       this.showLoading = false;
       localStorage.setItem('isLoggedin', 'true');
       this.router.navigate(['/dash']);

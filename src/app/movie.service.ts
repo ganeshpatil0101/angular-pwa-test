@@ -7,7 +7,13 @@ import { AuthService } from './core/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 const API_KEY = firebase.api_key;
 const API_URL = 'http://www.omdbapi.com/';
+const NEW_API_KEY = 'a0d799999273a3494dd3b0da1f44893c';
+const NEW_API = 'https://api.themoviedb.org/3/search/movie?api_key=';
+//a0d799999273a3494dd3b0da1f44893c&language=en-US&query=Avengers&page=1&include_adult=false';
+
 import {DeferredPromise} from './core/DefferePromise';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +47,17 @@ export class MovieService {
 
   getMoviesCollection():Promise<AngularFirestoreCollection> {
     return this.dpromise.promise;
+  }
+
+  searchMovieName(name:String): Observable<{ results: Movie[]}> {
+    return this.http
+      .get<{ results: Movie[]}>(NEW_API+NEW_API_KEY+"&query="+name+"&language=en-US&page=1&include_adult=false", {
+        observe: 'response'
+      })
+      .pipe(
+        map(res => {
+          return res.body;
+        })
+      );
   }
 }

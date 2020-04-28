@@ -31,6 +31,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 @NgModule({
@@ -65,7 +66,8 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
     MatMenuModule,
     MatDialogModule,
     MatSelectModule,
-    MatCheckboxModule    
+    MatCheckboxModule,
+    MatAutocompleteModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

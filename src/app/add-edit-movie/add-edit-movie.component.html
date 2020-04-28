@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Which movie you watched?</h1>
 <div mat-dialog-content class="dialog-height">
-  <mat-form-field style="width: 100%;" >
+  <!-- <mat-form-field style="width: 100%;" >
     <mat-label>Name</mat-label>
     <input matInput [(ngModel)]="data.name">
     <button mat-button [disabled]="!data.name" matSuffix mat-icon-button aria-label="Search" 
@@ -8,7 +8,21 @@
       <mat-icon *ngIf="!showLoading">search</mat-icon>
       <mat-spinner *ngIf="showLoading" class="search-spinner" diameter=20 ></mat-spinner>
     </button>
+  </mat-form-field> -->
+  <mat-form-field style="width: 100%;">
+    <input matInput
+           placeholder="Search Movies"
+           aria-label="movies"
+           [matAutocomplete]="auto"
+           [formControl]="movieCtrl">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="disFn" >
+      <mat-option *ngFor="let movie of filteredMovies | async" [value]="movie"  >
+        <!-- <img class="example-option-img" aria-hidden [src]="state.flag" height="25"> -->
+        <span>{{movie.original_title}}</span><small>({{movie.release_date}})</small> 
+      </mat-option>
+    </mat-autocomplete>   
   </mat-form-field>
+  
   <mat-form-field style="width: 100%;" >
     <mat-label>Poster URL</mat-label>
     <input matInput [(ngModel)]="data.posterUrl">

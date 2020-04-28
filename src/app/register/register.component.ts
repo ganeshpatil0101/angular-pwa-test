@@ -28,8 +28,6 @@ export class RegisterComponent implements OnInit {
   }
 
   signUp(): void {
-    console.log("Register User");
-    
     if(this.passFormControl.value !== this.repassFormControl.value) {
       this.repassFormControl.setErrors({checkPassMistmatch:true});
     }else {

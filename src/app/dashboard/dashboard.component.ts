@@ -36,10 +36,8 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
       if(result && result.name){
         this.movie.saveMovie(result).then(()=>{
-          console.log("saved ");
         }).catch(e=>console.error(e));
         // this.movie.getWebSeriseDetails('Arrow', 2).then((res)=>{
         //   console.log(res);
