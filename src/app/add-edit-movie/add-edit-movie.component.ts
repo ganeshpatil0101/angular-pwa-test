@@ -22,15 +22,17 @@ export class AddEditMovieComponent implements OnInit {
       this.filteredMovies = this.movieCtrl.valueChanges
       .pipe(  
         startWith(''),
-        //debounceTime(300),
-        //map(movie => movie ? this._filterMovies(movie) : this.movieData.slice()),
         // delay emits
         debounceTime(500),
         // use switch map so as to cancel previous subscribed events, before creating new once
         switchMap(value => {
           if (value !== '') {
             // search from movie db
-            return this.searchByMovieName(value);
+            if(this.data.type == "movie") {
+              return this.searchByMovieName(value);
+            } else if(this.data.type == "series") {
+              return this.searchByTvSeriesName(value);
+            }
           } else {
             // if no value is present, return null
             return of(null);
@@ -44,11 +46,18 @@ export class AddEditMovieComponent implements OnInit {
 
 
   displayFn(selectedMovie) {
-     if(selectedMovie) this.mapToMovie(selectedMovie);
-    if(selectedMovie && selectedMovie.original_title){
-      return selectedMovie.original_title;
-    } else if(selectedMovie && selectedMovie.title) {
-      return selectedMovie.title;
+    if(this.data.type === "movie") {
+      if(selectedMovie) this.mapToMovie(selectedMovie);
+      if(selectedMovie && selectedMovie.original_title){
+        return selectedMovie.original_title;
+      } else if(selectedMovie && selectedMovie.title) {
+        return selectedMovie.title;
+      }
+    } else if(this.data.type === 'series') {
+      if(selectedMovie) this.mapToTvSeries(selectedMovie);
+      if(selectedMovie && selectedMovie.original_name) {
+        return selectedMovie.original_name;
+      } 
     }
     return ''
   }
@@ -56,12 +65,18 @@ export class AddEditMovieComponent implements OnInit {
     this.data.name = dbData.original_title;
     this.data.posterUrl = this._createImgUrl(dbData.poster_path);
     this.data.plot = dbData.overview;
-    this.data.type = 'movie';
     this.data.imdbRating = dbData.vote_average;
     this.data.releaseDate = dbData.release_date;
     this.data.year = dbData.release_date.split("-")[0];
   }
-
+  mapToTvSeries(dbData) {
+    this.data.name = dbData.original_name;
+    this.data.posterUrl = this._createImgUrl(dbData.poster_path);
+    this.data.plot = dbData.overview;
+    this.data.imdbRating = dbData.vote_average;
+    this.data.releaseDate = dbData.first_air_date;
+    this.data.year = dbData.first_air_date.split("-")[0];
+  }
   _createImgUrl(poster_path) {
     if(poster_path) {
       return 'https://image.tmdb.org/t/p/w300'+poster_path;
@@ -73,7 +88,11 @@ export class AddEditMovieComponent implements OnInit {
       map(results => results.results)
     )
   }
-
+  searchByTvSeriesName(name:String) {
+    return this.movie.searchTvSeries(name).pipe(
+      map(results => results.results)
+    )
+  }
   ngOnInit(): void {
   }
   onNoClick(): void {

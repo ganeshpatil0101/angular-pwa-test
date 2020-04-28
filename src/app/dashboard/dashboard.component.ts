@@ -29,10 +29,12 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  openDialog() {
+  openDialog(type:string) {
     const dialogRef = this.dialog.open(AddEditMovieComponent, {
       width: this.device.isMobile() ? '100%' : '50%',
-      data: {}
+      data: {
+        type:type
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {

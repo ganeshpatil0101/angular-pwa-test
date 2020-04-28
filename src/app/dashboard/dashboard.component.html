@@ -14,13 +14,13 @@
 </div>
 
 <div class="dash-floating-button">
-    <button mat-mini-fab color="primary" aria-label="Add New" (click)="openDialog()" >
+    <button mat-mini-fab color="primary" aria-label="Add New" [matMenuTriggerFor]="menu"  >
         <mat-icon>add</mat-icon>
     </button>
-    <!-- [matMenuTriggerFor]="menu" <mat-menu #menu="matMenu">
-    <button mat-menu-item  >Movie</button>
-    <button mat-menu-item>Item 2</button>
-    </mat-menu> -->
+     <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openDialog('movie')" >Movie</button>
+        <button mat-menu-item (click)="openDialog('series')" >TV Series</button>
+    </mat-menu>
 </div>
 
 

@@ -8,8 +8,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 const API_KEY = firebase.api_key;
 const API_URL = 'http://www.omdbapi.com/';
 const NEW_API_KEY = 'a0d799999273a3494dd3b0da1f44893c';
-const NEW_API = 'https://api.themoviedb.org/3/search/movie?api_key=';
-//a0d799999273a3494dd3b0da1f44893c&language=en-US&query=Avengers&page=1&include_adult=false';
+const NEW_MOVIE_API = 'https://api.themoviedb.org/3/search/movie?api_key='+NEW_API_KEY;
+const NEW_TV_API = 'https://api.themoviedb.org/3/search/tv?api_key='+NEW_API_KEY;
 
 import {DeferredPromise} from './core/DefferePromise';
 import { Observable } from 'rxjs';
@@ -51,7 +51,18 @@ export class MovieService {
 
   searchMovieName(name:String): Observable<{ results: Movie[]}> {
     return this.http
-      .get<{ results: Movie[]}>(NEW_API+NEW_API_KEY+"&query="+name+"&language=en-US&page=1&include_adult=false", {
+      .get<{ results: Movie[]}>(NEW_MOVIE_API+"&query="+name+"&language=en-US&page=1&include_adult=false", {
+        observe: 'response'
+      })
+      .pipe(
+        map(res => {
+          return res.body;
+        })
+      );
+  }
+  searchTvSeries(name:String): Observable<{ results: Movie[]}> {
+    return this.http
+      .get<{ results: Movie[]}>(NEW_TV_API+"&query="+name+"&language=en-US&page=1&include_adult=false", {
         observe: 'response'
       })
       .pipe(

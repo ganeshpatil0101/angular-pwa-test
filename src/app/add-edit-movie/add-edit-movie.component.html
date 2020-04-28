@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Which movie you watched?</h1>
+<h1 mat-dialog-title>Which {{data.type}} you watched?</h1>
 <div mat-dialog-content class="dialog-height">
   <!-- <mat-form-field style="width: 100%;" >
     <mat-label>Name</mat-label>
@@ -18,7 +18,8 @@
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="disFn" >
       <mat-option *ngFor="let movie of filteredMovies | async" [value]="movie"  >
         <!-- <img class="example-option-img" aria-hidden [src]="state.flag" height="25"> -->
-        <span>{{movie.original_title}}</span><small>({{movie.release_date}})</small> 
+        <div *ngIf="movie.original_title" ><span>{{movie.original_title}}</span><small>({{movie.release_date}})</small> </div>
+        <div *ngIf="movie.original_name" ><span>{{movie.original_name}}</span><small>({{movie.first_air_date}})</small> </div>
       </mat-option>
     </mat-autocomplete>   
   </mat-form-field>
@@ -28,14 +29,14 @@
     <input matInput [(ngModel)]="data.posterUrl">
   </mat-form-field>
 <mat-form-field style="width: 100%;" >
-    <mat-label>Plot</mat-label>
+    <mat-label>Overview</mat-label>
     <input matInput [(ngModel)]="data.plot">
   </mat-form-field>
     <mat-form-field style="width: 100%;" >
     <mat-label>Type</mat-label>
       <mat-select [(value)]="data.type">
         <mat-option value="movie">Movie</mat-option>
-        <mat-option value="series">Web Series</mat-option>
+        <mat-option value="series">TV Series</mat-option>
       </mat-select>
   </mat-form-field>
   <mat-checkbox  >Watched ?</mat-checkbox>
