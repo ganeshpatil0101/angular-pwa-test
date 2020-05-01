@@ -39,27 +39,5 @@
     }
   ],
   "dataGroups": [
-    {
-      "name": "from-static",
-      "version": 1,
-      "urls": ["/data/data.json"],
-      "cacheConfig": {
-        "strategy": "performance",
-        "maxSize": 10,
-        "maxAge": "1d",
-        "timeout": "5s"
-      }
-    },
-    {
-      "name": "from-api",
-      "version": 2,
-      "urls": ["https://firestore.googleapis.com/**"],
-      "cacheConfig": {
-        "strategy": "freshness",
-        "maxSize": 20,
-        "maxAge": "1h",
-        "timeout": "10s"
-      }
-    }
   ]
 }
