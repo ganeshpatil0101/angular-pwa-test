@@ -15,7 +15,7 @@ import { Movie } from '../movie';
 })
 export class DashboardComponent implements OnInit {
 
-  public movieList: Observable<any[]>;
+  public movieList: any;
   constructor(private auth:AuthService, 
     private ngzone:NgZone, 
     private router:Router, 
@@ -25,7 +25,9 @@ export class DashboardComponent implements OnInit {
     
   ngOnInit(): void {
     this.movie.getMoviesCollection().then((movieCollection)=>{
-      this.movieList = movieCollection.valueChanges();
+      movieCollection.snapshotChanges().subscribe((res)=>{
+        this.movieList = res;
+      });
     })
   }
 
@@ -47,7 +49,25 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-  
+  onEdit(data) {
+    this.openEditDialog(data);
+  }
+  openEditDialog(data) {
+    const movieData:Movie = data.payload.doc.data();
+    const docId = data.payload.doc.id;
+    movieData.id = docId;
+    const dialogRef = this.dialog.open(AddEditMovieComponent, {
+      width: this.device.isMobile() ? '100%' : '50%',
+      data: movieData
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result && result.name && docId){
+        this.movie.udpateMovie(docId, result).then(()=>{
+        }).catch(e=>console.error(e));
+      }
+    });
+  }
   logout() {
     this.auth.doLogout().then(()=>{
       this.ngzone.run(()=>{

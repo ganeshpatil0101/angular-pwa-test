@@ -1,27 +1,27 @@
 <mat-card class="movie-card">
     <mat-card-header>
       <!-- <div mat-card-avatar class="example-header-image"></div> -->
-      <mat-card-title>{{data.name}} ( {{data.year}} ) </mat-card-title>
+      <mat-card-title>{{data.payload.doc.data().name}} ( {{data.payload.doc.data().year}} ) </mat-card-title>
       <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
     </mat-card-header>
     <mat-card-content>
       <div style="display: inline-flex;">
         <div style="float: left;">
-          <img [src]="data.posterUrl" height="150px" >  
+          <img [src]="data.payload.doc.data().posterUrl" height="150px" >  
         </div>
         <div style="float: left;padding-left: 10px;" >
           <p>
-            {{data.plot}}
+            {{data.payload.doc.data().plot}}
           </p>
         </div>
     </div>
     </mat-card-content>
     <mat-card-actions>
-      <span >IMDB Rating  : {{data.imdbRating}}  </span>
+      <span >IMDB Rating  : {{data.payload.doc.data().imdbRating}}  </span>
      
       <!-- <button mat-mini-fab color="primary" aria-label="Edit" (click)="edit(data)" > -->
         <mat-icon class="edit-icon" (click)="edit(data)">edit</mat-icon>
     <!-- </button> -->
-    <span style="float: right;"> Release Date : {{data.releaseDate}} </span>  
+    <span style="float: right;"> Release Date : {{data.payload.doc.data().releaseDate}} </span>  
     </mat-card-actions>
   </mat-card>

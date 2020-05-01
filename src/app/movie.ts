@@ -7,4 +7,5 @@ export interface Movie {
     type:string;
     imdbRating: string;
     watched:boolean;
+    id?:string;
 }

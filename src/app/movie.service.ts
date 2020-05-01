@@ -44,7 +44,12 @@ export class MovieService {
   saveMovie(data:Movie) {
     return this.movieCollection.add(data);
   }
-
+  udpateMovie(docId:string, data:Movie) {
+    if(docId){
+      return this.movieCollection.doc(docId).update(data);
+    }
+    return new Promise((res, rej)=>{rej('ID not present , data not updated ')});
+  }
   getMoviesCollection():Promise<AngularFirestoreCollection> {
     return this.dpromise.promise;
   }

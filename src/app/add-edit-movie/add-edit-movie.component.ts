@@ -41,11 +41,17 @@ export class AddEditMovieComponent implements OnInit {
       );
       this.disFn = this.displayFn.bind(this);
       this.mapToMovie.bind(this);
+      if(this.data.name) {
+        this.movieCtrl.setValue(this.data.name);
+      }
      }
 
 
 
   displayFn(selectedMovie) {
+    if(this.data.id) {
+      return this.data.name;
+    }
     if(this.data.type === "movie") {
       if(selectedMovie) this.mapToMovie(selectedMovie);
       if(selectedMovie && selectedMovie.original_title){
@@ -99,21 +105,21 @@ export class AddEditMovieComponent implements OnInit {
     this.dialogRef.close();
   }
   
-  findMovieByName(name:string) {
-    this.showLoading = true;
-    this.movie.getMovieDetails(name, "").then((res:any)=>{
-      if(res.Title) {
-        this.data.name = res.Title;
-        this.data.posterUrl = res.Poster;
-        this.data.plot = res.Plot;
-        this.data.type = res.Type;
-        this.data.imdbRating = res.imdbRating;
-        this.data.releaseDate = res.Released;
-        this.data.year = res.Year;
-      }
-    }).catch(e=>console.error(e)).finally(()=>{this.showLoading = false;});
+  // findMovieByName(name:string) {
+  //   this.showLoading = true;
+  //   this.movie.getMovieDetails(name, "").then((res:any)=>{
+  //     if(res.Title) {
+  //       this.data.name = res.Title;
+  //       this.data.posterUrl = res.Poster;
+  //       this.data.plot = res.Plot;
+  //       this.data.type = res.Type;
+  //       this.data.imdbRating = res.imdbRating;
+  //       this.data.releaseDate = res.Released;
+  //       this.data.year = res.Year;
+  //     }
+  //   }).catch(e=>console.error(e)).finally(()=>{this.showLoading = false;});
 
-  }
+  // }
 
   // private _filterMovies(value: string): Movies[] {
   //   const filterValue = value.toLowerCase();    

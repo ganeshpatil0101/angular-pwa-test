@@ -8,7 +8,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="main-div">
-    <app-movie-item *ngFor="let item of movieList | async" [data]="item">
+    <app-movie-item *ngFor="let item of movieList" [data]="item" (onedit)="onEdit($event)">
 
     </app-movie-item>
 </div>

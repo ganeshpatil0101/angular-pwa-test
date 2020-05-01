@@ -14,7 +14,8 @@
            placeholder="Search Movies"
            aria-label="movies"
            [matAutocomplete]="auto"
-           [formControl]="movieCtrl">
+           [formControl]="movieCtrl"
+           [attr.disabled]="data.id ? '' : null">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="disFn" >
       <mat-option *ngFor="let movie of filteredMovies | async" [value]="movie"  >
         <!-- <img class="example-option-img" aria-hidden [src]="state.flag" height="25"> -->
@@ -39,8 +40,7 @@
         <mat-option value="series">TV Series</mat-option>
       </mat-select>
   </mat-form-field>
-  <mat-checkbox  >Watched ?</mat-checkbox>
-  
+  <mat-checkbox [(ngModel)]="data.watched" >Watched ?</mat-checkbox>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancle</button>
