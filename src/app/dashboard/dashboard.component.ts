@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
   }
   searchByType(type){
     this.movieList = cloneDeep(this.copyItems);
-    if(!type) return;
+    if(type === 'all') return;
     this.movieList = this.movieList.filter((item)=>{
       return item.payload.doc.data().type === type;
     })
