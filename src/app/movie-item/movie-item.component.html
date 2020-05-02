@@ -10,6 +10,9 @@
           <img [src]="data.payload.doc.data().posterUrl" height="150px" >  
         </div>
         <div style="float: left;padding-left: 10px;" >
+          <p style="margin-bottom: 5px;">
+            {{(data.payload.doc.data().watched) ? 'Watched' : 'Not Watched'}}
+          </p>
           <p>
             {{data.payload.doc.data().plot}}
           </p>
@@ -18,10 +21,9 @@
     </mat-card-content>
     <mat-card-actions>
       <span >IMDB Rating  : {{data.payload.doc.data().imdbRating}}  </span>
-     
       <!-- <button mat-mini-fab color="primary" aria-label="Edit" (click)="edit(data)" > -->
         <mat-icon class="edit-icon" (click)="edit(data)">edit</mat-icon>
     <!-- </button> -->
-    <span style="float: right;"> Release Date : {{data.payload.doc.data().releaseDate}} </span>  
+      <span style="float: right;"> Release Date : {{data.payload.doc.data().releaseDate}} </span>  
     </mat-card-actions>
   </mat-card>

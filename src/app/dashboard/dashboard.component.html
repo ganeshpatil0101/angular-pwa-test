@@ -2,9 +2,21 @@
 <mat-toolbar-row>
     <span>Dashboard </span>
     <span class="dash-spacer"></span>
+    <div style="margin-right: 10px;">
+        <button mat-mini-fab color="primary" aria-label="Search">
+            <mat-icon class="dash-icon dash-logout" aria-hidden="false" aria-label="search" [matMenuTriggerFor]="searchmenu">more</mat-icon>
+        </button>
+        <mat-menu #searchmenu="matMenu">
+            <button mat-menu-item (click)="searchWatched()"> {{isWatchedMovie ? "Not Watched" : "Watched" }} </button>
+            <button mat-menu-item (click)="searchByType('movie')" > Movie</button>
+            <button mat-menu-item (click)="searchByType('series')" > TV Series</button>
+            <button mat-menu-item (click)="searchByType()" > All </button>
+        </mat-menu>
+    </div>
     <button mat-mini-fab color="primary" aria-label="Logout" (click)="logout()">
         <mat-icon class="dash-icon dash-logout" aria-hidden="false" aria-label="Logout">power_settings_new</mat-icon>
     </button>
+    
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="main-div">

@@ -7,6 +7,7 @@ import { MovieService } from '../movie.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Observable } from 'rxjs';
 import { Movie } from '../movie';
+import {cloneDeep} from 'lodash';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +17,8 @@ import { Movie } from '../movie';
 export class DashboardComponent implements OnInit {
 
   public movieList: any;
+  public copyItems: any;
+  public isWatchedMovie:boolean = false;
   constructor(private auth:AuthService, 
     private ngzone:NgZone, 
     private router:Router, 
@@ -27,6 +30,7 @@ export class DashboardComponent implements OnInit {
     this.movie.getMoviesCollection().then((movieCollection)=>{
       movieCollection.snapshotChanges().subscribe((res)=>{
         this.movieList = res;
+        this.copyItems = cloneDeep(res);
       });
     })
   }
@@ -43,14 +47,25 @@ export class DashboardComponent implements OnInit {
       if(result && result.name){
         this.movie.saveMovie(result).then(()=>{
         }).catch(e=>console.error(e));
-        // this.movie.getWebSeriseDetails('Arrow', 2).then((res)=>{
-        //   console.log(res);
-        // }).catch(e => console.error(e));
       }
     });
   }
   onEdit(data) {
     this.openEditDialog(data);
+  }
+  searchWatched() {
+    this.isWatchedMovie = !this.isWatchedMovie;
+    this.movieList = cloneDeep(this.copyItems);
+    this.movieList = this.movieList.filter((item) => {
+      return item.payload.doc.data().watched === this.isWatchedMovie;
+    });
+  }
+  searchByType(type){
+    this.movieList = cloneDeep(this.copyItems);
+    if(!type) return;
+    this.movieList = this.movieList.filter((item)=>{
+      return item.payload.doc.data().type === type;
+    })
   }
   openEditDialog(data) {
     const movieData:Movie = data.payload.doc.data();

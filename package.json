@@ -24,6 +24,7 @@
     "@angular/router": "~9.1.0",
     "@angular/service-worker": "~9.1.0",
     "firebase": "^7.14.0",
+    "lodash": "^4.17.15",
     "ngx-device-detector": "^1.4.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
